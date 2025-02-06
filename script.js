@@ -5,9 +5,8 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
-// Intersection Observer for scroll animations
+// Intersection Observer for animations
 const sections = document.querySelectorAll('.animate-section');
-
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -15,7 +14,7 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0.15
+  threshold: 0.1
 });
 
 sections.forEach(section => {
