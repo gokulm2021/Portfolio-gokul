@@ -332,6 +332,7 @@ section {
 
 #about {
   position: relative;
+  padding: 0;
 }
 
 .about-containers {
@@ -343,6 +344,7 @@ section {
 .about-details-container {
   justify-content: center;
   flex-direction: column;
+  margin-top: 0;
 }
 
 .about-containers,
@@ -379,8 +381,9 @@ section {
 }
 
 .section-container {
-  gap: 4rem;
-  height: 80%;
+  margin-top: 1rem;
+  gap: 2rem;
+  height: auto;
 }
 
 /* EXPERIENCE SECTION */
@@ -569,4 +572,23 @@ footer {
 
 footer p {
   text-align: center;
+}
+
+#about .title {
+  margin-bottom: 2rem;
+}
+
+.section__text__p1 {
+  margin-bottom: 0.5rem;
+}
+
+/* Media query adjustments */
+@media screen and (max-width: 992px) {
+  #about .title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-container {
+    margin-top: 0.5rem;
+  }
 }
