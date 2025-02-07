@@ -20,3 +20,12 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => {
   observer.observe(section);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const profileSection = document.querySelector('#profile');
+  
+  setTimeout(() => {
+    profileSection.querySelector('.profile-container').style.opacity = '1';
+    profileSection.querySelector('.profile-container').style.transform = 'translateY(0)';
+  }, 300);
+});

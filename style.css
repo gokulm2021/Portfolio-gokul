@@ -150,33 +150,112 @@ section {
 
 #profile {
   display: flex;
-  justify-content: flex-start;
-  gap: 10rem;
-  height: 80vh;
-  user-select: none;
-  padding-left: 0rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding-top: 0;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  margin-top: -10vh;
 }
 
-#profile:hover .profile__pic-container {
-  opacity: 1;
-  transform: translateX(0);
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 0;
+  transition: all 0.5s ease-in-out;
+  padding-bottom: 2rem;
 }
 
 .profile__pic-container {
-  display: flex;
-  height: 400px;
   width: 400px;
-  margin: auto 0;
-  left: 0;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+  position: relative;
   opacity: 0;
-  transform: translateX(100px);
-  transition: all 0.5s ease;
-  order: -1;
+  transform: translateX(-100px);
+  width: 0;
+}
+
+.profile__pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
 }
 
 .section__text {
-  align-self: center;
   text-align: center;
+  transition: all 0.5s ease-in-out;
+  transform: scale(1.5);
+  font-size: 1.5em;
+}
+
+.section__text__p2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 4rem;
+  text-align: center;
+}
+
+/* Hover animations */
+.profile-container:hover {
+  gap: 8rem;
+}
+
+.profile-container:hover .profile__pic-container {
+  opacity: 1;
+  transform: translateX(-3rem);
+  width: 400px;
+}
+
+.profile-container:hover .section__text {
+  transform: translateX(3rem) scale(0.9);
+}
+
+/* Media query adjustments */
+@media screen and (max-width: 992px) {
+  #profile {
+    min-height: 85vh;
+    margin-top: -6vh;
+  }
+
+  .profile-container {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .profile__pic-container {
+    width: 0;
+    height: 350px;
+  }
+
+  .section__text {
+    transform: scale(1.3);
+  }
+
+  .profile-container:hover {
+    gap: 3rem;
+  }
+
+  .profile-container:hover .profile__pic-container {
+    transform: scale(0.95);
+    width: 350px;
+  }
+
+  .profile-container:hover .section__text {
+    transform: scale(0.9);
+    text-align: center;
+  }
 }
 
 .section__text p {
@@ -184,16 +263,6 @@ section {
 }
 
 .section__text__p1 {
-  text-align: center;
-}
-
-.section__text__p2 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-.title {
-  font-size: 3rem;
   text-align: center;
 }
 
