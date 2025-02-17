@@ -29,3 +29,36 @@ document.addEventListener('DOMContentLoaded', function() {
     profileSection.querySelector('.profile-container').style.transform = 'translateY(0)';
   }, 300);
 });
+
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    subject: document.getElementById('subject').value,
+    message: document.getElementById('message').value
+  };
+
+  try {
+    const response = await fetch('http://localhost:5000/send_email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+    
+    if (response.ok) {
+      alert('Message sent successfully!');
+      this.reset();
+    } else {
+      alert('Failed to send message. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred. Please try again later.');
+  }
+});
