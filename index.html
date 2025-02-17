@@ -9,22 +9,78 @@
     <link rel="icon" type="image/x-icon" href="./assets/favicon.png">
     <link rel="stylesheet" href="page.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
+    <style>
+        .blur-effect {
+            filter: blur(4px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
   </head>
   <body>
+    <div class="loading-container" id="loadingContainer">
+        <div aria-live="assertive" role="alert" class="loader"></div>
+    </div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <!-- SVG Filter -->
+        <svg style="position: absolute; width: 0; height: 0;">
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12"></feGaussianBlur>
+                <feColorMatrix values="0 0 0 0 0 
+                        0 0 0 0 0 
+                        0 0 0 0 0 
+                        0 0 0 48 -7"></feColorMatrix>
+            </filter>
+        </svg>
+        
+        <!-- New Loader -->
+        <div class="loader"></div>
+    </div>
     <nav id="desktop-nav">
-      <div class="logo">Gokul M</div>
+      <div class="logo" id="scrollTop">Gokul M</div>
       <div>
         <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">Gokul M</div>
+      <div class="logo" id="logoMobile">Gokul M</div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -461,6 +517,6 @@
       </nav>
       <p>Copyright &#169; 2025 Gokul M. All Rights Reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="page.js"></script>
   </body>
 </html>

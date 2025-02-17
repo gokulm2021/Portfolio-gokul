@@ -726,7 +726,7 @@ footer p {
   }
 }
 
-/* Loading and Blur Effects */
+/* Loading overlay and blur effect */
 .blur-effect {
     filter: blur(4px);
     pointer-events: none;
@@ -739,52 +739,96 @@ footer p {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
     z-index: 9999;
     justify-content: center;
     align-items: center;
 }
 
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 5px solid #3498db;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Custom SweetAlert Styles */
-.swal2-popup {
-    font-family: 'Poppins', sans-serif;
-    border-radius: 15px;
-}
-
-.swal2-title {
-    color: #333;
-    font-size: 1.5em;
-}
-
-.swal2-content {
-    color: #666;
-}
-
-.swal2-confirm {
-    border-radius: 8px !important;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-/* If there's any overlay or animation section that might be causing the issue */
-.animate-section {
+/* New loader styles */
+.loader {
+    width: 12em;
+    height: 3em;
     position: relative;
-    z-index: 1;
+    overflow: hidden;
+    border-bottom: 8px solid #000;
+    filter: url(#goo);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loader::before {
+    content: '';
+    width: 22em;
+    height: 18em;
+    background: #f00;
+    position: absolute;
+    border-radius: 50%;
+    left: -2em;
+    bottom: -18em;
+    animation: wee1 2s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    width: 16em;
+    height: 12em;
+    background: #0ff;
+    position: absolute;
+    border-radius: 50%;
+    left: -4em;
+    bottom: -12em;
+    animation: wee2 2s linear infinite 0.75s;
+}
+
+@keyframes wee1 {
+    0% {
+        transform: translateX(-10em) rotate(0deg);
+    }
+    100% {
+        transform: translateX(7em) rotate(180deg);
+    }
+}
+
+@keyframes wee2 {
+    0% {
+        transform: translateX(-8em) rotate(0deg);
+    }
+    100% {
+        transform: translateX(8em) rotate(180deg);
+    }
+}
+
+/* Prevent scrolling when loader is active */
+body.loading {
+    overflow: hidden;
+}
+
+/* SweetAlert Custom Styles */
+.custom-popup {
+    font-family: 'Poppins', sans-serif !important;
+    border-radius: 15px !important;
+    padding: 2em !important;
+}
+
+.custom-title {
+    font-size: 1.5em !important;
+    color: #333 !important;
+    font-weight: 600 !important;
+}
+
+.custom-content {
+    color: #666 !important;
+    font-size: 1.1em !important;
+}
+
+.custom-confirm-button {
+    padding: 0.8em 2em !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    border-radius: 8px !important;
 }
 
 /* Add this to your CSS */
@@ -836,88 +880,4 @@ footer p {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10001;
-}
-
-/* Loader animation */
-.loader {
-    --hue: 210;
-    --size: 100px;
-    --border: 10px;
-    --speed: 1s;
-    --blur: var(--border);
-    width: var(--border);
-    aspect-ratio: 1;
-    background: white;
-    border-radius: 50%;
-    position: relative;
-    --y: calc((var(--size) * -0.5) + (var(--border) * 0.5));
-    transform: rotate(0deg) translateY(var(--y));
-    animation: spin var(--speed) infinite linear;
-}
-
-.loader::before {
-    content: "";
-    position: absolute;
-    inset: calc(var(--border) * -0.5);
-    border-radius: 50%;
-    background: white;
-    filter: blur(var(--blur));
-    z-index: -1;
-}
-
-.loader::after {
-    content: "";
-    width: var(--size);
-    aspect-ratio: 1;
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    translate: -50% 0;
-    background: conic-gradient(
-        white,
-        hsl(var(--hue), 100%, 70%),
-        hsl(var(--hue), 100%, 10%),
-        transparent 65%
-    );
-    border-radius: 50%;
-    mask: radial-gradient(
-        transparent calc(((var(--size) * 0.5) - var(--border)) - 1px),
-        white calc((var(--size) * 0.5) - var(--border))
-    );
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(-360deg) translateY(var(--y));
-    }
-}
-
-/* Prevent scrolling when loader is active */
-body.loading {
-    overflow: hidden;
-}
-
-/* SweetAlert Custom Styles */
-.custom-popup {
-    font-family: 'Poppins', sans-serif !important;
-    border-radius: 15px !important;
-    padding: 2em !important;
-}
-
-.custom-title {
-    font-size: 1.5em !important;
-    color: #333 !important;
-    font-weight: 600 !important;
-}
-
-.custom-content {
-    color: #666 !important;
-    font-size: 1.1em !important;
-}
-
-.custom-confirm-button {
-    padding: 0.8em 2em !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    border-radius: 8px !important;
 }

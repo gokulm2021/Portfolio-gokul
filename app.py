@@ -21,9 +21,9 @@ RECIPIENT_EMAIL = "gokulapriyan1979@gmail.com"
 def send_assets(path):
     return send_from_directory('assets', path)
 
-@app.route('/script.js')
+@app.route('/page.js')
 def send_js():
-    return send_from_directory('.', 'script.js')
+    return send_from_directory('.', 'page.js')
 
 @app.route('/page.css')
 def send_css():
@@ -36,7 +36,7 @@ def send_mediaqueries():
 # Main route
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return send_from_directory('.', 'index.html')
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
@@ -75,10 +75,10 @@ def send_email():
             server.login(SENDER_EMAIL, SENDER_PASSWORD)
             server.send_message(msg)
 
-        return jsonify({"message": "Email sent successfully!"}), 200
+        return jsonify({'message': 'Email sent successfully'}), 200
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True) 
